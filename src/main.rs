@@ -11,7 +11,7 @@ fn title() {
 
     ");
 }
-fn menu() {
+fn menu() {//asdf
     loop {
         title();
         println!("1. Toggle the CRT monitor");
@@ -30,6 +30,7 @@ fn menu() {
                 launch_monkeytype();
             }
             "0" => {
+                bash_cmd("clear");
                 std::process::exit(0);
             }
             _ => {
