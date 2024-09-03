@@ -18,7 +18,7 @@ fn menu() {
         println!("2. Launch MonkeyType");
         println!("\n0. Exit");
         option();
-
+//does this work?
         let mut menu_selection: String = String::new();
         std::io::stdin()
             .read_line(&mut menu_selection)
