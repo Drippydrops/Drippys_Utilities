@@ -11,7 +11,7 @@ fn title() {
 
     ");
 }
-fn menu() {//asdf
+fn menu() {
     loop {
         title();
         println!("1. Toggle the CRT monitor");
