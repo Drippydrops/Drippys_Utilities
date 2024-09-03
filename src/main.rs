@@ -91,4 +91,3 @@ fn launch_monkeytype() {
 fn main() {
         menu();
 }
-//
