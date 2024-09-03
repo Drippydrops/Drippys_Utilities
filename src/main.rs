@@ -23,7 +23,7 @@ fn menu() {
         std::io::stdin()
             .read_line(&mut menu_selection)
             .expect("Is this ever reached?");
-
+//test
         match menu_selection.trim() {
             "1" => {
                 toggle_crt();
