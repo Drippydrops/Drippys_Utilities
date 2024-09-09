@@ -1,7 +1,8 @@
 //Functions that define the basic outline of the application
 fn title() {
     bash_cmd("clear");
-    println!(r"
+    println!(
+        r"
     ██████╗ ██████╗ ██╗██████╗ ██████╗ ██╗   ██╗███████╗    ██╗   ██╗████████╗██╗██╗     ██╗████████╗██╗███████╗███████╗
     ██╔══██╗██╔══██╗██║██╔══██╗██╔══██╗╚██╗ ██╔╝██╔════╝    ██║   ██║╚══██╔══╝██║██║     ██║╚══██╔══╝██║██╔════╝██╔════╝
     ██║  ██║██████╔╝██║██████╔╝██████╔╝ ╚████╔╝ ███████╗    ██║   ██║   ██║   ██║██║     ██║   ██║   ██║█████╗  ███████╗
@@ -9,7 +10,8 @@ fn title() {
     ██████╔╝██║  ██║██║██║     ██║        ██║   ███████║    ╚██████╔╝   ██║   ██║███████╗██║   ██║   ██║███████╗███████║
     ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝        ╚═╝   ╚══════╝     ╚═════╝    ╚═╝   ╚═╝╚══════╝╚═╝   ╚═╝   ╚═╝╚══════╝╚══════╝
 
-    ");
+    "
+    );
 }
 fn menu() {
     loop {
@@ -39,7 +41,7 @@ fn menu() {
         }
     }
 }
-fn bash_cmd(x: &str, ) {
+fn bash_cmd(x: &str) {
     std::process::Command::new("bash")
         .arg("-c")
         .arg(x)
@@ -48,8 +50,7 @@ fn bash_cmd(x: &str, ) {
 }
 fn option() {
     print!("\nOption: ");
-    std::io::Write::flush(&mut std::io::stdout())
-        .expect("Failed to flush stdout");
+    std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
 }
 
 //Main functions that are called within the application
@@ -57,10 +58,12 @@ fn toggle_crt() {
     loop {
         bash_cmd("clear");
         let mut state: String = String::new();
-        println!("Toggle the monitor\
+        println!(
+            "Toggle the monitor\
         \n1: OFF \
         \n2: ON\n\n\
-        0. Back");
+        0. Back"
+        );
         option();
 
         std::io::stdin()
@@ -89,5 +92,5 @@ fn launch_monkeytype() {
 
 //Main application and the order that the functions are called
 fn main() {
-        menu();
+    menu();
 }
