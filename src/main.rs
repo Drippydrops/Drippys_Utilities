@@ -53,11 +53,27 @@ fn option() {
     std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
 }
 
+//Struct and Enum declarations
+enum MonitorState {
+    Off,
+    On,
+}
+
+impl MonitorState {
+    fn turn_monitor_off(&self) {
+        bash_cmd("xrandr --output DP-0 --off");
+    }
+    fn turn_monitor_on(&self) {
+        bash_cmd("xrandr --output DP-0 --mode 800x600 --pos 5120x840");
+    }
+}
+
 //Main functions that are called within the application
 fn toggle_crt() {
+    let mut crt_monitor_state: MonitorState = MonitorState::On;
+
     loop {
         bash_cmd("clear");
-        let mut state: String = String::new();
         println!(
             "Toggle the monitor\
         \n1: OFF \
@@ -66,16 +82,37 @@ fn toggle_crt() {
         );
         option();
 
+        let mut state: String = String::new();
         std::io::stdin()
             .read_line(&mut state)
-            .expect("Is this ever reached?");
+            .expect("Issue reading stdin");
         match state.trim() {
-            "1" => {
-                bash_cmd("xrandr --output DP-0 --off");
-            }
-            "2" => {
-                bash_cmd("xrandr --output DP-0 --mode 800x600 --pos 5120x840");
-            }
+            "1" => match crt_monitor_state {
+                MonitorState::Off => {
+                    println!("The CRT monitor is already off. Hit Enter to continue.");
+                    crt_monitor_state = MonitorState::Off;
+                    std::io::stdin()
+                        .read_line(&mut "".to_string())
+                        .expect("Issue reading stdin");
+                }
+                MonitorState::On => {
+                    crt_monitor_state.turn_monitor_off();
+                    crt_monitor_state = MonitorState::Off;
+                }
+            },
+            "2" => match crt_monitor_state {
+                MonitorState::On => {
+                    println!("The CRT monitor is already on. Hit Enter to continue.");
+                    crt_monitor_state = MonitorState::On;
+                    std::io::stdin()
+                        .read_line(&mut "".to_string())
+                        .expect("Issue reading stdin");
+                }
+                MonitorState::Off => {
+                    crt_monitor_state.turn_monitor_on();
+                    crt_monitor_state = MonitorState::On;
+                }
+            },
             "0" => {
                 break;
             }
