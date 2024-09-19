@@ -77,8 +77,8 @@ fn toggle_crt() {
         println!(
             "Toggle the monitor\
         \n1: OFF \
-        \n2: ON\n\n\
-        0. Back"
+        \n2: ON
+        \n\n\0. Back"
         );
         option();
 
@@ -86,6 +86,9 @@ fn toggle_crt() {
         std::io::stdin()
             .read_line(&mut state)
             .expect("Issue reading stdin");
+
+        //This match statement is going to utilize enums only because I just learned about them.
+        //It is not the cleanest way to do this, or the best.
         match state.trim() {
             "1" => match crt_monitor_state {
                 MonitorState::Off => {
