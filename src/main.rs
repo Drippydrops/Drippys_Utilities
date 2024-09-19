@@ -133,5 +133,4 @@ fn launch_monkeytype() {
 //Main application and the order that the functions are called
 fn main() {
     menu();
-    //testing
 }
