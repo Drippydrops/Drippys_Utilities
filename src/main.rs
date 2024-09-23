@@ -15,10 +15,11 @@ fn title() {
 }
 fn menu() {
     loop {
+        let mut index: u8 = 0;
         title();
-        println!("1. Toggle the CRT monitor");
-        println!("2. Launch MonkeyType");
-        println!("3. Toggle lamps");
+        println!("{}. Toggle the CRT monitor", menu_number(&mut index));
+        println!("{}. Launch MonkeyType", menu_number(&mut index));
+        println!("{}. Toggle lamps", menu_number(&mut index));
         println!("\n0. Exit");
         option();
         let mut menu_selection: String = String::new();
@@ -53,7 +54,11 @@ fn bash_cmd(x: &str) {
         .expect("Failed to execute command");
 }
 
-//Misc enhancements
+//Misc menu enhancements
+fn menu_number(index_input: &mut u8) -> u8 {
+    *index_input += 1;
+    *index_input
+}
 fn option() {
     print!("\nOption: ");
     std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
@@ -83,7 +88,7 @@ fn toggle_crt() {
             "Toggle the monitor\
         \n1: OFF \
         \n2: ON
-        \n\n\0. Back"
+        \n\n0. Back"
         );
         option();
 
