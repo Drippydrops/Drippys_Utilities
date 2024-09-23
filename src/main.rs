@@ -43,7 +43,6 @@ fn menu() {
                 println!("\nInvalid option\n");
             }
         }
-        //asdf
     }
 }
 fn bash_cmd(x: &str) {
