@@ -3,12 +3,12 @@ fn title() {
     bash_cmd("clear");
     println!(
         r"
-    ██████╗ ██████╗ ██╗██████╗ ██████╗ ██╗   ██╗███████╗    ██╗   ██╗████████╗██╗██╗     ██╗████████╗██╗███████╗███████╗
-    ██╔══██╗██╔══██╗██║██╔══██╗██╔══██╗╚██╗ ██╔╝██╔════╝    ██║   ██║╚══██╔══╝██║██║     ██║╚══██╔══╝██║██╔════╝██╔════╝
-    ██║  ██║██████╔╝██║██████╔╝██████╔╝ ╚████╔╝ ███████╗    ██║   ██║   ██║   ██║██║     ██║   ██║   ██║█████╗  ███████╗
-    ██║  ██║██╔══██╗██║██╔═══╝ ██╔═══╝   ╚██╔╝  ╚════██║    ██║   ██║   ██║   ██║██║     ██║   ██║   ██║██╔══╝  ╚════██║
-    ██████╔╝██║  ██║██║██║     ██║        ██║   ███████║    ╚██████╔╝   ██║   ██║███████╗██║   ██║   ██║███████╗███████║
-    ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝        ╚═╝   ╚══════╝     ╚═════╝    ╚═╝   ╚═╝╚══════╝╚═╝   ╚═╝   ╚═╝╚══════╝╚══════╝
+██████╗ ██████╗ ██╗██████╗ ██████╗ ██╗   ██╗██╗████████╗
+██╔══██╗██╔══██╗██║██╔══██╗██╔══██╗╚██╗ ██╔╝██║╚══██╔══╝
+██║  ██║██████╔╝██║██████╔╝██████╔╝ ╚████╔╝ ██║   ██║
+██║  ██║██╔══██╗██║██╔═══╝ ██╔═══╝   ╚██╔╝  ██║   ██║
+██████╔╝██║  ██║██║██║     ██║        ██║██╗██║   ██║
+╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝        ╚═╝╚═╝╚═╝   ╚═╝
 
     "
     );
@@ -17,10 +17,10 @@ fn menu() {
     loop {
         let mut index: u8 = 0;
         title();
-        println!("{}. Toggle the CRT monitor", menu_number(&mut index));
-        println!("{}. Launch MonkeyType", menu_number(&mut index));
-        println!("{}. Toggle lamps", menu_number(&mut index));
-        println!("\n0. Exit");
+        println!(" {}. Toggle the CRT monitor", menu_number(&mut index));
+        println!(" {}. Launch MonkeyType", menu_number(&mut index));
+        println!(" {}. Toggle lamps", menu_number(&mut index));
+        println!("\n 0. Exit");
         option();
         let mut menu_selection: String = String::new();
         std::io::stdin()
@@ -60,7 +60,7 @@ fn menu_number(index_input: &mut u8) -> u8 {
     *index_input
 }
 fn option() {
-    print!("\nOption: ");
+    print!("\n Option: ");
     std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
 }
 
