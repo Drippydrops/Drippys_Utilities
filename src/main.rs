@@ -88,11 +88,11 @@ fn toggle_crt() {
 
     loop {
         bash_cmd("clear");
-        println!(
-            "Toggle the monitor\
-        \n1: OFF \
-        \n2: ON
-        \n\n0. Back"
+        title();
+        println!(" Toggle the monitor\
+        \n 1: OFF \
+        \n 2: ON
+        \n\n\n\n 0. Back"
         );
         option();
 
@@ -148,7 +148,29 @@ fn toggle_lamps() {
     bash_cmd("kasa --host 192.168.0.253 toggle");
 }
 fn shutdown() {
-    bash_cmd("shutdown");
+    bash_cmd("clear");
+    title();
+    println!(" Are you sure?
+    \n 1. Shutdown\
+    \n\n\n\n\n 0. Back");
+    option();
+
+    let mut menu_selection: String = String::new();
+    std::io::stdin()
+        .read_line(&mut menu_selection)
+        .expect("Is this ever reached?");
+    match menu_selection.trim() {
+        "1" => {
+            title();
+            bash_cmd("shutdown now");
+        }
+        "2" => {
+            menu();
+        }
+        _ => {
+            println!("\nInvalid option\n");
+        }
+    }
 }
 //Main application and the order that the functions are called
 fn main() {
