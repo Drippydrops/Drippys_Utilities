@@ -20,7 +20,8 @@ fn menu() {
         println!(" {}. Toggle the CRT monitor", menu_number(&mut index));
         println!(" {}. Launch MonkeyType", menu_number(&mut index));
         println!(" {}. Toggle lamps", menu_number(&mut index));
-        println!("\n 0. Exit");
+        println!("\n\n\n\n 9. Shutdown");
+        println!(" 0. Exit");
         option();
         let mut menu_selection: String = String::new();
         std::io::stdin()
@@ -35,6 +36,9 @@ fn menu() {
             }
             "3" => {
                 toggle_lamps();
+            }
+            "9" => {
+                shutdown();
             }
             "0" => {
                 bash_cmd("clear");
@@ -142,6 +146,9 @@ fn launch_monkeytype() {
 fn toggle_lamps() {
     bash_cmd("kasa --host 192.168.0.254 toggle");
     bash_cmd("kasa --host 192.168.0.253 toggle");
+}
+fn shutdown() {
+    bash_cmd("shutdown");
 }
 //Main application and the order that the functions are called
 fn main() {
