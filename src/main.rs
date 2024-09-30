@@ -164,11 +164,14 @@ fn shutdown() {
             title();
             bash_cmd("shutdown now");
         }
-        "2" => {
+        "0" => {
             menu();
         }
         _ => {
-            println!("\nInvalid option\n");
+            println!("\nInvalid option. Hit enter to continue.\n");
+            std::io::stdin()
+                .read_line(&mut "".to_string())
+                .expect("Issue reading stdin");
         }
     }
 }
