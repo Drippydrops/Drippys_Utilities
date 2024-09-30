@@ -41,21 +41,11 @@ fn menu() {
                 shutdown();
             }
             "0" => {
-                bash_cmd("clear");
-                std::process::exit(0);
+                exit();
             }
-            _ => {
-                println!("\nInvalid option\n");
-            }
+            _ => println!("\nInvalid option\n"),
         }
     }
-}
-fn bash_cmd(x: &str) {
-    std::process::Command::new("bash")
-        .arg("-c")
-        .arg(x)
-        .status()
-        .expect("Failed to execute command");
 }
 
 //Misc menu enhancements
@@ -83,6 +73,13 @@ impl MonitorState {
 }
 
 //Main functions that are called within the application
+fn bash_cmd(x: &str) {
+    std::process::Command::new("bash")
+        .arg("-c")
+        .arg(x)
+        .status()
+        .expect("Failed to execute command");
+}
 fn toggle_crt() {
     let mut crt_monitor_state: MonitorState = MonitorState::On;
 
@@ -102,7 +99,7 @@ fn toggle_crt() {
             .expect("Issue reading stdin");
 
         //This match statement is going to utilize enums only because I just learned about them.
-        //It is not the cleanest way to do this, or the best.
+        //It is not the cleanest way to do this... or the best.
         match state.trim() {
             "1" => match crt_monitor_state {
                 MonitorState::Off => {
@@ -134,7 +131,10 @@ fn toggle_crt() {
                 break;
             }
             _ => {
-                println!("\nInvalid option\n");
+                println!("\nInvalid option. Hit enter to continue.\n");
+                std::io::stdin()
+                    .read_line(&mut "".to_string())
+                    .expect("Issue reading stdin");
             },
         }
     }
@@ -171,6 +171,28 @@ fn shutdown() {
             println!("\nInvalid option\n");
         }
     }
+}
+fn exit() {
+    title();
+    println!(" Are you sure?
+                    \n 1. Exit \
+                    \n\n\n\n\n 0. Back");
+    option();
+    let mut menu_selection: String = String::new();
+    std::io::stdin()
+        .read_line(&mut menu_selection)
+        .expect("Is this ever reached?");
+    match menu_selection.trim() {
+        "1" => {
+            std::process::exit(0);
+        },
+        "0" => {
+            menu();
+        },
+        _ => {
+            println!("\nInvalid option\n");
+        },
+    } 
 }
 
 //Main application and the order that the functions are called
