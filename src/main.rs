@@ -144,7 +144,7 @@ fn toggle_crt() {
 fn launch_monkeytype() {
     bash_cmd("nohup xdg-open https://www.monkeytype.com &");
     bash_cmd("clear"); //Gets rid of some stdout messages that hold up main() from looping correctly
-}
+    }
 
 /*fn toggle_lamps() {
 !!Depreciated after tplink_smartplug.py integration FU KASA!!! !!
