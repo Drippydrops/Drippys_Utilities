@@ -236,7 +236,6 @@ fn exit() {
         }
     }
 }
-asdf;;
 //Main application and the order that the functions are called
 fn main() {
     menu();
