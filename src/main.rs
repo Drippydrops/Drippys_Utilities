@@ -55,8 +55,7 @@ fn menu_number(index_input: &mut u8) -> u8 {
 }
 fn option() {
     print!("\n Option: ");
-    std::io::Write::flush(&mut std::io::stdout())
-        .expect("Failed to flush stdout");
+    std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
 }
 
 //Struct and Enum declarations
@@ -144,7 +143,7 @@ fn toggle_crt() {
 fn launch_monkeytype() {
     bash_cmd("nohup xdg-open https://www.monkeytype.com &");
     bash_cmd("clear"); //Gets rid of some stdout messages that hold up main() from looping correctly
-    }
+}
 
 /*fn toggle_lamps() {
 !!Depreciated after tplink_smartplug.py integration FU KASA!!! !!
@@ -165,7 +164,7 @@ fn toggle_lamps() {
     } else {
         bash_cmd("nohup /home/drippy/Documents/rust/Drippys_Utilities/tplink_smartplug.py -t 192.168.0.254 -c off &");
         bash_cmd("clear;")
-        }
+    }
 
     let floor_lamp_state = std::process::Command::new("bash")
         .arg("-c")
