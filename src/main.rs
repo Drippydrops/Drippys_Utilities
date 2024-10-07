@@ -55,7 +55,8 @@ fn menu_number(index_input: &mut u8) -> u8 {
 }
 fn option() {
     print!("\n Option: ");
-    std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
+    std::io::Write::flush(&mut std::io::stdout())
+        .expect("Failed to flush stdout");
 }
 
 //Struct and Enum declarations
@@ -86,7 +87,8 @@ fn toggle_crt() {
     loop {
         bash_cmd("clear");
         title();
-        println!(" Toggle the monitor\
+        println!(
+            " Toggle the monitor\
         \n 1: OFF \
         \n 2: ON
         \n\n\n\n 0. Back"
@@ -135,7 +137,7 @@ fn toggle_crt() {
                 std::io::stdin()
                     .read_line(&mut "".to_string())
                     .expect("Issue reading stdin");
-            },
+            }
         }
     }
 }
@@ -143,16 +145,51 @@ fn launch_monkeytype() {
     bash_cmd("nohup xdg-open https://www.monkeytype.com &");
     bash_cmd("clear"); //Gets rid of some stdout messages that hold up main() from looping correctly
 }
+
+/*fn toggle_lamps() {
+!!Depreciated after tplink_smartplug.py integration FU KASA!!! !!
+   bash_cmd("kasa --host 192.168.0.254 toggle");
+   bash_cmd("kasa --host 192.168.0.253 toggle");
+}*/
 fn toggle_lamps() {
-    bash_cmd("kasa --host 192.168.0.254 toggle");
-    bash_cmd("kasa --host 192.168.0.253 toggle");
+    let desk_lamp_state = std::process::Command::new("bash")
+        .arg("-c")
+        .arg("/home/drippy/Documents/rust/Drippys_Utilities/tplink_smartplug.py -t 192.168.0.254 -c info")
+        .output()
+        .expect("Failed to execute command");
+    let desk_lamp_stdout = String::from_utf8_lossy(&desk_lamp_state.stdout);
+
+    if desk_lamp_stdout.contains("\"relay_state\":0") {
+        bash_cmd("nohup /home/drippy/Documents/rust/Drippys_Utilities/tplink_smartplug.py -t 192.168.0.254 -c on &");
+        bash_cmd("clear;")
+    } else {
+        bash_cmd("nohup /home/drippy/Documents/rust/Drippys_Utilities/tplink_smartplug.py -t 192.168.0.254 -c off &");
+        bash_cmd("clear;")
+        }
+
+    let floor_lamp_state = std::process::Command::new("bash")
+        .arg("-c")
+        .arg("/home/drippy/Documents/rust/Drippys_Utilities/tplink_smartplug.py -t 192.168.0.253 -c info")
+        .output()
+        .expect("Failed to execute command");
+    let floor_lamp_stdout = String::from_utf8_lossy(&floor_lamp_state.stdout);
+
+    if floor_lamp_stdout.contains("\"relay_state\":0") {
+        bash_cmd("nohup /home/drippy/Documents/rust/Drippys_Utilities/tplink_smartplug.py -t 192.168.0.253 -c on &");
+        bash_cmd("clear;")
+    } else {
+        bash_cmd("nohup /home/drippy/Documents/rust/Drippys_Utilities/tplink_smartplug.py -t 192.168.0.253 -c off &");
+        bash_cmd("clear;")
+    }
 }
 fn shutdown() {
     bash_cmd("clear");
     title();
-    println!(" Are you sure?
+    println!(
+        " Are you sure?
     \n 1. Shutdown\
-    \n\n\n\n\n 0. Back");
+    \n\n\n\n\n 0. Back"
+    );
     option();
 
     let mut menu_selection: String = String::new();
@@ -177,9 +214,11 @@ fn shutdown() {
 }
 fn exit() {
     title();
-    println!(" Are you sure?
+    println!(
+        " Are you sure?
                     \n 1. Exit \
-                    \n\n\n\n\n 0. Back");
+                    \n\n\n\n\n 0. Back"
+    );
     option();
     let mut menu_selection: String = String::new();
     std::io::stdin()
@@ -188,14 +227,14 @@ fn exit() {
     match menu_selection.trim() {
         "1" => {
             std::process::exit(0);
-        },
+        }
         "0" => {
             menu();
-        },
+        }
         _ => {
             println!("\nInvalid option\n");
-        },
-    } 
+        }
+    }
 }
 
 //Main application and the order that the functions are called
