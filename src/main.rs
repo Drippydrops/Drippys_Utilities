@@ -3,6 +3,8 @@ fn title() {
     bash_cmd("clear");
     println!(
         r"
+
+
 ██████╗ ██████╗    ██╗   ██╗████████╗██╗██╗     ███████╗
 ██╔══██╗██╔══██╗   ██║   ██║╚══██╔══╝██║██║     ██╔════╝
 ██║  ██║██║  ██║   ██║   ██║   ██║   ██║██║     ███████╗
@@ -20,7 +22,7 @@ fn menu() {
         println!(" {}. Toggle the CRT monitor", menu_number(&mut index));
         println!(" {}. Launch MonkeyType", menu_number(&mut index));
         println!(" {}. Toggle lamps", menu_number(&mut index));
-        println!("\n\n\n\n 9. Shutdown");
+        println!("\n\n\n 9. Shutdown");
         println!(" 0. Exit");
         option();
         let mut menu_selection: String = String::new();
@@ -150,6 +152,7 @@ fn launch_monkeytype() {
    bash_cmd("kasa --host 192.168.0.254 toggle");
    bash_cmd("kasa --host 192.168.0.253 toggle");
 }*/
+
 fn toggle_lamps() {
     let desk_lamp_state = std::process::Command::new("bash")
         .arg("-c")
