@@ -2,16 +2,13 @@
 fn title() {
     bash_cmd("clear");
     println!(
-        r"
-
-
+        r" 
 ██████╗ ██████╗    ██╗   ██╗████████╗██╗██╗     ███████╗
 ██╔══██╗██╔══██╗   ██║   ██║╚══██╔══╝██║██║     ██╔════╝
 ██║  ██║██║  ██║   ██║   ██║   ██║   ██║██║     ███████╗
 ██║  ██║██║  ██║   ██║   ██║   ██║   ██║██║     ╚════██║
 ██████╔╝██████╔╝██╗╚██████╔╝   ██║   ██║███████╗███████║
 ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝
-
     "
     );
 }
@@ -22,7 +19,7 @@ fn menu() {
         println!(" {}. Toggle the CRT monitor", menu_number(&mut index));
         println!(" {}. Launch MonkeyType", menu_number(&mut index));
         println!(" {}. Toggle lamps", menu_number(&mut index));
-        println!("\n\n\n 9. Shutdown");
+        println!("\n\n\n\n 9. Shutdown");
         println!(" 0. Exit");
         option();
         let mut menu_selection: String = String::new();
