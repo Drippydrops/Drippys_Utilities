@@ -14,7 +14,7 @@ fn title() {
 }
 fn menu() {
     loop {
-        /*Temp fix - defining index number here to laster be passed to menu_number, otherwise 
+        /*Temp fix - defining index number here to later be passed to menu_number, otherwise
         numbers go TO THE MOON!!*/
         let mut index: u8 = 0;
         title();
