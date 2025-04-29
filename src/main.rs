@@ -14,8 +14,8 @@ fn title() {
 }
 fn menu() {
     loop {
-        /*Temp fix - defining index number here to later be passed to menu_number, otherwise
-        numbers go TO THE MOON!!*/
+        /* Temp fix - Defining index number here to later be passed to menu_number, otherwise
+        numbers go TO THE MOON!! */
         let mut index: u8 = 0;
         title();
         println!(" {}. Toggle the CRT monitor", menu_number(&mut index));
