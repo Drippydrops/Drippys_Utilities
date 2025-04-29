@@ -14,6 +14,8 @@ fn title() {
 }
 fn menu() {
     loop {
+        /*Temp fix - defining index number here to laster be passed to menu_number, otherwise 
+        numbers go TO THE MOON!!*/
         let mut index: u8 = 0;
         title();
         println!(" {}. Toggle the CRT monitor", menu_number(&mut index));
@@ -143,7 +145,6 @@ fn launch_monkeytype() {
     bash_cmd("nohup xdg-open https://www.monkeytype.com &");
     bash_cmd("clear"); //Gets rid of some stdout messages that hold up main() from looping correctly
 }
-
 /*fn toggle_lamps() {
 !!Depreciated after tplink_smartplug.py integration FU KASA!!! !!
    bash_cmd("kasa --host 192.168.0.254 toggle");
