@@ -71,3 +71,37 @@ Received:  {"system":{"set_relay_state":{"err_code":0}}}
 Created TensorFlow Lite XNNPACK delegate for CPU.
 Attempting to use a delegate that only supports static-sized tensors with a graph that has dynamic-sized tensors (tensor#141 is a dynamic-sized tensor).
 [12239:12267:1022/202917.039182:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Sent:      {"system":{"set_relay_state":{"state":0}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+Sent:      {"system":{"set_relay_state":{"state":0}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+Sent:      {"system":{"set_relay_state":{"state":1}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+Sent:      {"system":{"set_relay_state":{"state":1}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+Sent:      {"system":{"set_relay_state":{"state":0}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+Sent:      {"system":{"set_relay_state":{"state":0}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+Sent:      {"system":{"set_relay_state":{"state":1}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+Sent:      {"system":{"set_relay_state":{"state":1}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+[913070:913070:0526/064021.232349:ERROR:chrome/browser/ui/views/frame/browser_view.cc:5932] Attempting to show IPH IPH_TabSearchToolbarButton before browser initialization; IPH will not be shown.
+[913070:913070:0526/064023.870197:ERROR:chrome/browser/policy/cloud/fm_registration_token_uploader.cc:179] Client is missing for kUser scope
+Created TensorFlow Lite XNNPACK delegate for CPU.
+Attempting to use a delegate that only supports static-sized tensors with a graph that has dynamic-sized tensors (tensor#-1 is a dynamic-sized tensor).
+[913070:913942:0526/064024.056994:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+Sent:      {"system":{"set_relay_state":{"state":0}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+Sent:      {"system":{"set_relay_state":{"state":0}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+Sent:      {"system":{"set_relay_state":{"state":1}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+Sent:      {"system":{"set_relay_state":{"state":1}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+[1176047:1176047:0526/064257.896110:ERROR:chrome/browser/ui/views/frame/browser_view.cc:5932] Attempting to show IPH IPH_TabSearchToolbarButton before browser initialization; IPH will not be shown.
+Sent:      {"system":{"set_relay_state":{"state":1}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}
+Sent:      {"system":{"set_relay_state":{"state":1}}}
+Received:  {"system":{"set_relay_state":{"err_code":0}}}

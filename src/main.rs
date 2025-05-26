@@ -2,14 +2,14 @@
 fn title() {
     bash_cmd("clear");
     println!(
-        r" 
-██████╗ ██████╗    ██╗   ██╗████████╗██╗██╗     ███████╗
-██╔══██╗██╔══██╗   ██║   ██║╚══██╔══╝██║██║     ██╔════╝
-██║  ██║██║  ██║   ██║   ██║   ██║   ██║██║     ███████╗
-██║  ██║██║  ██║   ██║   ██║   ██║   ██║██║     ╚════██║
-██████╔╝██████╔╝██╗╚██████╔╝   ██║   ██║███████╗███████║
-╚═════╝ ╚═════╝ ╚═╝ ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝
-    "
+        "
+   ██████╗ ██████╗    ██╗   ██╗████████╗██╗██╗     ███████╗
+   ██╔══██╗██╔══██╗   ██║   ██║╚══██╔══╝██║██║     ██╔════╝
+   ██║  ██║██║  ██║   ██║   ██║   ██║   ██║██║     ███████╗
+   ██║  ██║██║  ██║   ██║   ██║   ██║   ██║██║     ╚════██║
+   ██████╔╝██████╔╝██╗╚██████╔╝   ██║   ██║███████╗███████║
+   ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝
+"
     );
 }
 fn menu() {
@@ -21,31 +21,9 @@ fn menu() {
         println!(" {}. Toggle the CRT monitor", menu_number(&mut index));
         println!(" {}. Launch MonkeyType", menu_number(&mut index));
         println!(" {}. Toggle lamps", menu_number(&mut index));
-        println!("\n\n\n\n 9. Shutdown"); 
+        println!("\n\n\n\n 9. Shutdown");
         println!(" 0. Exit");
-        option();
-        let mut menu_selection: String = String::new();
-        std::io::stdin()
-            .read_line(&mut menu_selection)
-            .expect("Is this ever reached?");
-        match menu_selection.trim() {
-            "1" => {
-                toggle_crt();
-            }
-            "2" => {
-                launch_monkeytype();
-            }
-            "3" => {
-                toggle_lamps();
-            }
-            "9" => {
-                shutdown();
-            }
-            "0" => {
-                exit();
-            }
-            _ => println!("\nInvalid option\n"),
-        }
+        user_menu_selection();
     }
 }
 
@@ -54,16 +32,13 @@ fn menu_number(index_input: &mut u8) -> u8 {
     *index_input += 1;
     *index_input
 }
-fn option() {
-    print!("\n Option: ");
-    std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
-}
 
 //Struct and Enum declarations
 enum MonitorState {
     Off,
     On,
 }
+
 impl MonitorState {
     fn turn_monitor_off(&self) {
         bash_cmd("xrandr --output DP-0 --off");
@@ -74,6 +49,26 @@ impl MonitorState {
 }
 
 //Main functions that are called within the application
+
+fn user_menu_selection() {
+    print!("\n Option: ");
+    std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
+    let mut menu_selection: String = String::new();
+    std::io::stdin()
+        .read_line(&mut menu_selection)
+        .expect("Is this ever reached?");
+    match menu_selection.trim() {
+        "1" => toggle_crt(),
+        "2" => launch_monkeytype(),
+        "3" => toggle_lamps(),
+        "9" => shutdown(),
+        "0" => exit(),
+        _ => println!("\nInvalid option\n"),
+    }
+    //Clears the menu_selection string as ".read_line()" continuously appends to the string
+    menu_selection.clear();
+}
+
 fn bash_cmd(x: &str) {
     std::process::Command::new("bash")
         .arg("-c")
@@ -81,6 +76,7 @@ fn bash_cmd(x: &str) {
         .status()
         .expect("Failed to execute command");
 }
+
 fn toggle_crt() {
     let mut crt_monitor_state: MonitorState = MonitorState::On;
 
@@ -93,12 +89,13 @@ fn toggle_crt() {
         \n 2: ON
         \n\n\n\n 0. Back"
         );
-        option();
 
+        option();
         let mut state: String = String::new();
         std::io::stdin()
             .read_line(&mut state)
             .expect("Issue reading stdin");
+
 
         //This match statement is going to utilize enums only because I just learned about them.
         //It is not the cleanest way to do this... or the best.
@@ -150,7 +147,10 @@ fn launch_monkeytype() {
    bash_cmd("kasa --host 192.168.0.254 toggle");
    bash_cmd("kasa --host 192.168.0.253 toggle");
 }*/
-
+fn option() {
+    print!("\n Option: ");
+    std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
+}
 fn toggle_lamps() {
     let desk_lamp_state = std::process::Command::new("bash")
         .arg("-c")
@@ -190,8 +190,8 @@ fn shutdown() {
     \n 1. Shutdown\
     \n\n\n\n\n 0. Back"
     );
+    
     option();
-
     let mut menu_selection: String = String::new();
     std::io::stdin()
         .read_line(&mut menu_selection)
