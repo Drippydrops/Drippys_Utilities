@@ -68,7 +68,6 @@ fn user_menu_selection() {
     //Clears the menu_selection string as ".read_line()" continuously appends to the string
     menu_selection.clear();
 }
-
 fn bash_cmd(x: &str) {
     std::process::Command::new("bash")
         .arg("-c")
@@ -76,7 +75,10 @@ fn bash_cmd(x: &str) {
         .status()
         .expect("Failed to execute command");
 }
-
+fn option() {
+    print!("\n Option: ");
+    std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
+}
 fn toggle_crt() {
     let mut crt_monitor_state: MonitorState = MonitorState::On;
 
@@ -147,10 +149,6 @@ fn launch_monkeytype() {
    bash_cmd("kasa --host 192.168.0.254 toggle");
    bash_cmd("kasa --host 192.168.0.253 toggle");
 }*/
-fn option() {
-    print!("\n Option: ");
-    std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
-}
 fn toggle_lamps() {
     let desk_lamp_state = std::process::Command::new("bash")
         .arg("-c")
