@@ -39,7 +39,6 @@ enum MonitorState {
     Off,
     On,
 }
-
 impl MonitorState {
     fn turn_monitor_off(&self) {
         bash_cmd("xrandr --output DP-0 --off");
@@ -50,7 +49,6 @@ impl MonitorState {
 }
 
 //Main functions that are called within the application
-
 fn user_menu_selection() {
     print!("\n Option: ");
     std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout");
@@ -145,11 +143,6 @@ fn launch_monkeytype() {
     bash_cmd("nohup xdg-open https://www.monkeytype.com &");
     bash_cmd("clear"); //Gets rid of some stdout messages that hold up main() from looping correctly
 }
-/*fn toggle_lamps() {
-!!Depreciated after tplink_smartplug.py integration FU KASA!!! !!
-   bash_cmd("kasa --host 192.168.0.254 toggle");
-   bash_cmd("kasa --host 192.168.0.253 toggle");
-}*/
 fn toggle_lamps() {
     let desk_lamp_state = std::process::Command::new("bash")
         .arg("-c")
