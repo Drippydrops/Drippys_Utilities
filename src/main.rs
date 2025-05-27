@@ -3,6 +3,7 @@ fn title() {
     bash_cmd("clear");
     println!(
         "
+
     ██████╗ ██████╗    ██╗   ██╗████████╗██╗██╗     
     ██╔══██╗██╔══██╗   ██║   ██║╚══██╔══╝██║██║     
     ██║  ██║██║  ██║   ██║   ██║   ██║   ██║██║     
@@ -21,7 +22,7 @@ fn menu() {
         println!(" {}. Toggle the CRT monitor", menu_number(&mut index));
         println!(" {}. Launch MonkeyType", menu_number(&mut index));
         println!(" {}. Toggle lamps", menu_number(&mut index));
-        println!("\n\n\n\n 9. Shutdown");
+        println!("\n\n\n 9. Shutdown");
         println!(" 0. Exit");
         user_menu_selection();
     }
